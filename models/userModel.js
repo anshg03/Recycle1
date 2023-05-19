@@ -1,6 +1,11 @@
-const moongoose = require('moongoose');
+const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
+    productId: {
+        type: Number,
+        required: true,
+        unique: true
+    },
     name: {
         type: String,
         required: [true, "A name is required"],
@@ -29,12 +34,8 @@ const userSchema = new mongoose.Schema({
             },
             message: 'Invalid email address',
         }
-    },
-    password: {
-        type: String,
-        required: true
     }
 });
 
-const USER = mongoose.model("USER", userSchema);
-module.exports = USER;
+const PRODUCT = mongoose.model("PRODUCT", productSchema);
+module.exports = PRODUCT;
