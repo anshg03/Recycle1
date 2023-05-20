@@ -1,15 +1,28 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
-  userId: {
+const productSchema = new Schema({
+  productId: {
     type: Number,
     required: true,
     unique: true,
   },
-  fullName: {
+  name: {
     type: String,
-    required: [true, "Name is required"],
+    required: [true, "A name is required"],
+    unique: true,
+  },
+  description: {
+    type: String,
+    trim: true,
+  },
+  proImage: {
+    type: String,
+    reqired: [true, "Image is required"],
+  },
+  creationTime: {
+    type: Date,
+    default: Date.now(),
   },
   email: {
     type: String,
@@ -23,11 +36,7 @@ const userSchema = new Schema({
       message: "Invalid email address",
     },
   },
-  password: {
-    type: String,
-    required: true,
-  },
 });
 
-const USER = mongoose.model("USER", userSchema);
-module.exports = USER;
+const PRODUCT = mongoose.model("PRODUCT", productSchema);
+module.exports = PRODUCT;
