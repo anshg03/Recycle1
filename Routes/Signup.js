@@ -3,9 +3,6 @@ const router = express.Router();
 const User = require("../models/userModel");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const jwtSecret = "abcdef";
-let i = 1;
 
 router.post('/signup',
     [
@@ -33,7 +30,6 @@ router.post('/signup',
             })
 
             const newUser = new User({
-                userId: i,
                 fullName: fullName,
                 email: email,
                 password: hashPassword
@@ -41,17 +37,15 @@ router.post('/signup',
 
             newUser.save()
                 .then(() => {
+                    console.log(newUser);
                     console.log('New user created successfully')
-                    i++;
                 })
                 .catch((error) => {
                     console.error('Error creating user:', error)
                     res.send("Error Ocurred")
                 })
-
-        }
-        catch {
-            console.error(error.message)
+        } catch {
+            console.error(errors.message)
             res.send("Server Error")
         }
     })
