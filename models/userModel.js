@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const bcrypt = require("bcryptjs");
 
 const userSchema = new Schema({
   fullName: {
@@ -11,18 +12,25 @@ const userSchema = new Schema({
     reqired: [true, "Email is required"],
     lowercase: true,
     unique: true,
-    validate: {
-      validator: function (value) {
-        return "/S+@S+.S+/".test(value);
-      },
-      message: "Invalid email address",
-    },
   },
   password: {
     type: String,
     required: true,
   },
 });
+
+userSchema.pre("save", function (next) {
+  bcrypt.hash(this.password, 10, (err, hash) => {
+    if (err) {
+      next(err);
+      console.log(err);
+      res.send("Password Hashing Server Error");
+    } else {
+      this.password = hash;
+      next();
+    }
+  });
+})
 
 const USER = mongoose.model("USER", userSchema);
 module.exports = USER;

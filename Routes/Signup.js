@@ -21,37 +21,24 @@ router.post(
         errors: errors.array(),
       });
     }
-
     const { fullName, email, password } = req.body;
     try {
-      let hashPassword = "";
-      bcrypt(password, 10, (err, hash) => {
-        if (err) {
-          console.log(err);
-          res.send("Server Error");
-        } else {
-          hashPassword = hash;
-        }
-      });
-
       const newUser = new User({
         fullName: fullName,
         email: email,
-        password: hashPassword,
+        password: password,
       });
-
       newUser
         .save()
         .then(() => {
-          console.log(newUser);
           console.log("New user created successfully");
         })
         .catch((error) => {
           console.error("Error creating user:", error);
           res.send("Error Ocurred");
         });
-    } catch {
-      console.error(errors.message);
+    } catch (error) {
+      console.error(error.message);
       res.send("Server Error");
     }
   }
