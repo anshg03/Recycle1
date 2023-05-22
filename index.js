@@ -12,8 +12,8 @@ app.use(express.json());
 app.use("/api", require("./Routes/Login"));
 app.use("/api", require("./Routes/Signup"));
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+//const port = process.env.PORT || 3000;
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`);
+// });
 module.exports = app;
