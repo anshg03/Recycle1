@@ -36,6 +36,10 @@ const productSchema = new Schema({
       message: "Invalid email address",
     },
   },
+  amount: {
+    type: Number,
+    required: true,
+  },
 });
 
 const PRODUCT = mongoose.model("PRODUCT", productSchema);

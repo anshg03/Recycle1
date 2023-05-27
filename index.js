@@ -9,8 +9,8 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use("/api", require("./Routes/Login"));
-app.use("/api", require("./Routes/Signup"));
+app.use("/api/Login", require("./Routes/userRoute"));
+app.use("/api/signup", require("./Routes/userRoute"));
 
 //const port = process.env.PORT || 3000;
 // app.listen(port, () => {
