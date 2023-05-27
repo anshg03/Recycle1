@@ -1,6 +1,5 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const dataRouter = require("./Routes/Login");
 dotenv.config({ path: "./config.env" });
 const bodyParser = require("body-parser");
 
