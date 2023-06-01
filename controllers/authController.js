@@ -6,6 +6,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const { promisify } = require("util");
 const e = require("express");
+const dotenv = require("dotenv");
+dotenv.config({ path: ".../config.env" });
 const { OAuth2Client } = require("google-auth-library");
 
 const signToken = (data) => {
@@ -96,9 +98,9 @@ exports.signup = catchAsync(async (req, res, next) => {
     fullName: req.body.fullName,
     email: req.body.email,
     password: secPassword,
+    image: req.body.image,
   });
   await newUser.save();
-  console.log(newUser);
   console.log("New user created successfully");
 
   const data = {
