@@ -33,3 +33,4 @@ exports.newpost = catchAsync(async (req, res, next) => {
 
   res.status(201).json({ message: "Post created successfully", post });
 });
+0

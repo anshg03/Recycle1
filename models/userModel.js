@@ -19,18 +19,18 @@ const userSchema = new Schema({
   },
 });
 
-userSchema.pre("save", function (next) {
-  bcrypt.hash(this.password, 10, (err, hash) => {
-    if (err) {
-      next(err);
-      console.log(err);
-      res.send("Password Hashing Server Error");
-    } else {
-      this.password = hash;
-      next();
-    }
-  });
-})
+// userSchema.pre("save", function (next) {
+//   bcrypt.hash(this.password, 10, (err, hash) => {
+//     if (err) {
+//       next(err);
+//       console.log(err);
+//       res.send("Password Hashing Server Error");
+//     } else {
+//       this.password = hash;
+//       next();  
+//     }
+//   });
+// })
 
 const USER = mongoose.model("USER", userSchema);
 module.exports = USER;

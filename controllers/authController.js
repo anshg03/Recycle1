@@ -74,7 +74,7 @@ exports.login = catchAsync(async (req, res, next) => {
   };
 
   success = true;
-  const authToken = jwt.signToken(data);
+  const authToken = signToken(data);
 
   res.cookie("token", authToken, {
     httpOnly: true,
@@ -89,17 +89,14 @@ exports.signup = catchAsync(async (req, res, next) => {
   if (!errors.isEmpty()) {
     return next(new AppError());
   }
-
   const salt = await bcrypt.genSalt(10);
   let secPassword = await bcrypt.hash(req.body.password, salt);
 
   const newUser = new User({
-    name: req.body.fullName,
+    fullName: req.body.fullName,
     email: req.body.email,
     password: secPassword,
-    image: req.body.image,
   });
-
   await newUser.save();
   console.log(newUser);
   console.log("New user created successfully");
