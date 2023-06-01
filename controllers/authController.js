@@ -98,7 +98,6 @@ exports.signup = catchAsync(async (req, res, next) => {
     fullName: req.body.fullName,
     email: req.body.email,
     password: secPassword,
-    image: req.body.image,
   });
   await newUser.save();
   console.log("New user created successfully");
