@@ -12,6 +12,9 @@ const productSchema = new Schema({
     required: [true, "A name is required"],
     unique: true,
   },
+  phoneNo: {
+    type: Number,
+  },
   description: {
     type: String,
     trim: true,
