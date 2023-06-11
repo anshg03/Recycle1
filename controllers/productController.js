@@ -21,18 +21,16 @@ exports.newpost = catchAsync(async (req, res, next) => {
     );
   }
 
-  const postId = uuidv4();
-
-  const { proImage, name, description, tags, time } = req.body;
+  const { name, phoneNo, description, proImage, amount } = req.body;
 
   const post = new Post({
-    proImage,
-    name,
-    postId: postId,
-    description,
-    tags,
-    time,
-    amount,
+    productId: uuidv4(),
+    name: name,
+    phoneNo: phoneNo,
+    description: description,
+    proImage: proImage,
+    amount: amount,
+    email: email
   });
 
   await post.save();
@@ -75,7 +73,7 @@ exports.updatePost = catchAsync(async (req, res, next) => {
   post.proImage = req.body.proImage;
   post.name = req.body.name;
   post.description = req.body.description;
-  post.tags = req.body.tags;
+  post.phoneNo = req.body.phoneNo;
   post.time = req.body.time;
   post.amount = req.body.amount;
   await post.save();

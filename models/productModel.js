@@ -32,12 +32,6 @@ const productSchema = new Schema({
     reqired: [true, "Email is required"],
     lowercase: true,
     unique: true,
-    validate: {
-      validator: function (value) {
-        return "/S+@S+.S+/".test(value);
-      },
-      message: "Invalid email address",
-    },
   },
   amount: {
     type: Number,
