@@ -37,6 +37,13 @@ const productSchema = new Schema({
     type: Number,
     required: true,
   },
+  otp: {
+    type: String,
+  },
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const PRODUCT = mongoose.model("PRODUCT", productSchema);

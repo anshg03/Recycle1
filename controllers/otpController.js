@@ -1,27 +1,36 @@
 const twilio = require("twilio");
 const AppError = require("../utils/appError");
 const dotenv = require("dotenv");
+const Product = require("../models/productModel");
 dotenv.config({ path: ".../config.env" });
+const { catchAsync } = require("../Utils/catchAsync");
 
-exports.sendOTP = (otp, phoneNo) => {
-    const accountSid = process.env.accountSid;
-    const authToken = process.env.authTokenTwilio;
+exports.sendOTP = catchAsync(async (otp, productId) => {
+  const accountSid = process.env.accountSid;
+  const authToken = process.env.authTokenTwilio;
 
-    const client = twilio(accountSid, authToken);
+  const client = twilio(accountSid, authToken);
 
-    client.messages
-        .create({
-            body: 'Your otp for the mobilw verification is' + otp,
-            to: "+91" + phoneNo,
-            from: '+13613493707',
-        })
-        .then((message) => console.log("Message sent"));
-}
+  const product = await Product.findOne({ productId });
+  if (!product) {
+    throw new AppError("Product not found", 404);
+  }
 
-exports.matchOTP = (otp, enterOTP) => {
-    if (otp !== enterOTP) {
-        new AppError("The otp entered is not matching", 409);
-    }
+  const phoneNo = product.phoneNo;
 
-    res.status(200).json({ message: "OTP verified" });
-}
+  client.messages
+    .create({
+      body: "Your OTP for mobile verification is: " + otp,
+      to: "+91" + phoneNo,
+      from: "+13613493707",
+    })
+    .then((message) => console.log("Message sent"));
+});
+
+exports.matchOTP = (otp, enterOTP, res) => {
+  if (otp !== enterOTP) {
+    throw new AppError("The OTP entered does not match", 409);
+  }
+
+  res.status(200).json({ message: "OTP verified" });
+};
