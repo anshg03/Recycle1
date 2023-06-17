@@ -1,5 +1,4 @@
 const express = require("express");
-//const  {getAllData,createUser} = require('../controller/userController');
 const { login, signup } = require("../controllers/authController");
 const { body } = require("express-validator");
 

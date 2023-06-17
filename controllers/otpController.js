@@ -1,5 +1,5 @@
 const twilio = require("twilio");
-const AppError = require("../utils/appError");
+const AppError = require("../Utils/appError");
 const dotenv = require("dotenv");
 const Product = require("../models/productModel");
 dotenv.config({ path: ".../config.env" });

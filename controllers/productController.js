@@ -1,4 +1,4 @@
-const AppError = require("../utils/appError");
+const AppError = require("../Utils/appError");
 const { catchAsync } = require("../Utils/catchAsync");
 const User = require("../models/userModel");
 const { promisify } = require("util");
@@ -107,3 +107,13 @@ exports.deletePost = catchAsync(async (req, res, next) => {
 
   res.status(204).json({ message: "Post deleted successfully" });
 });
+
+exports.getAllPosts = catchAsync(async (req, res, next) => {
+  Post.find((err, val) => {
+    if (err) {
+      new AppError("The posts are not available in the database");
+    } else {
+      res.json(val);
+    }
+  })
+})
