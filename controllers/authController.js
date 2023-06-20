@@ -53,7 +53,7 @@ exports.googlesignin = catchAsync(async (req, res, next) => {
   res.json({ success: true });
 });
 
-exports.login = catchAsync(async (req, res, next) => {
+exports.Login = catchAsync(async (req, res, next) => {
   let success = false;
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

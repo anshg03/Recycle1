@@ -1,5 +1,5 @@
 const express = require("express");
-const { login, signup } = require("../controllers/authController");
+const { Login, signup } = require("../controllers/authController");
 const { body } = require("express-validator");
 
 const router = express.Router();
@@ -28,7 +28,7 @@ router
       body("email", "Enter a Valid Email").isEmail(),
       body("password", "Password cannot be blank").exists(),
     ],
-    login
+    Login
   );
 
 //router.route("/").get(getAllData).post(createUser);
