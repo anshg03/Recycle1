@@ -111,10 +111,6 @@ exports.signup = catchAsync(async (req, res, next) => {
 
   res.status(201).json({
     status: "Success",
-    token,
-    data: {
-      user: newUser,
-    },
   });
 });
 
