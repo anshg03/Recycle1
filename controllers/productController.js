@@ -5,9 +5,9 @@ const { promisify } = require("util");
 const jwt = require("jsonwebtoken");
 const { v4: uuidv4 } = require("uuid");
 const Post = require("../models/productModel");
-const { protect } = require("../controller/authController");
+const { protect } = require("./authController");
 
-exports.newpost = catchAsync(async (req, res, next) => {
+exports.newPost = catchAsync(async (req, res, next) => {
   const token = req.headers.authorization.substring(7);
   const tokenData = jwt.verify(token, process.env.JWT_SECRET);
   const user = await User.findOne({

@@ -28,7 +28,8 @@
     "moongoose": "^0.0.5",
     "node": "^20.2.0",
     "nodemon": "^2.0.22",
-    "twilio": "^4.11.2"
+    "twilio": "^4.11.2",
+    "uuid": "^9.0.0"
   },
   "description": ""
 }

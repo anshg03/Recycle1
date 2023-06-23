@@ -62,11 +62,13 @@ exports.Login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
   let user = await User.findOne({ email });
   if (!user) {
+    res.json({ success });
     return next(new AppError("Try Logging in with correct credentials", 400));
   }
 
   const pwdCompare = await bcrypt.compare(password, user.password);
   if (!pwdCompare) {
+    res.json({ success });
     return next(new AppError("Try Logging in with correct credentials", 400));
   }
 
