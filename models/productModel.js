@@ -36,14 +36,7 @@ const productSchema = new Schema({
   amount: {
     type: Number,
     required: true,
-  },
-  otp: {
-    type: String,
-  },
-  isVerified: {
-    type: Boolean,
-    default: false,
-  },
+  }
 });
 
 const PRODUCT = mongoose.model("PRODUCT", productSchema, 'products');
