@@ -5,20 +5,20 @@ const Product = require("../models/productModel");
 dotenv.config({ path: ".../config.env" });
 const { catchAsync } = require("../Utils/catchAsync");
 
-exports.sendOTP = catchAsync(async (req, res, next) => {
+exports.sendOTP = catchAsync(async (req, res) => {
   const accountSid = process.env.accountSid;
   const authToken = process.env.authTokenTwilio;
-  console.log(req);
+  const twilioNumber = process.env.twilioNumber;
   const client = twilio(accountSid, authToken);
-
+  console.log(req.body);
+  const { phoneNo, otp } = req.body;
   client.messages
     .create({
-      body: "Your OTP for mobile verification is: " + req.otp,
-      to: "+91" + req.phoneNo,
-      from: "+13613493707",
+      body: "Your OTP for mobile verification is: " + otp,
+      to: "+91" + phoneNo,
+      from: twilioNumber,
     })
     .then((message) => console.log("Message sent"));
-  return res.status(201)
 });
 
 exports.matchOTP = (otp, enterOTP, res) => {

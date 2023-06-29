@@ -9,7 +9,7 @@ const { protect } = require("./authController");
 
 exports.newPost = catchAsync(async (req, res, next) => {
   const token = req.headers.authorization.substring(7);
-  const tokenData = jwt.verify(req.body, process.env.JWT_SECRET);
+  const tokenData = jwt.verify(token, process.env.JWT_SECRET);
   const user = await User.findOne({
     email: tokenData.email,
     googleId: tokenData.googleId,
