@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const productSchema = new Schema({
   productId: {
-    type: Number,
+    type: String,
     required: true,
     unique: true,
   },
@@ -20,7 +20,7 @@ const productSchema = new Schema({
     trim: true,
   },
   proImage: {
-    type: String,
+    type: Array,
     reqired: [true, "Image is required"],
   },
   creationTime: {
@@ -36,6 +36,10 @@ const productSchema = new Schema({
   amount: {
     type: Number,
     required: true,
+  },
+  isVerified: {
+    type: Boolean,
+    required: true
   }
 });
 

@@ -21,7 +21,7 @@ exports.newPost = catchAsync(async (req, res, next) => {
     );
   }
 
-  const { name, phoneNo, description, proImage, amount } = req.body;
+  const { name, phoneNo, description, proImage, amount, emailPassed } = req.body;
 
   const post = new Post({
     productId: uuidv4(),
@@ -30,8 +30,10 @@ exports.newPost = catchAsync(async (req, res, next) => {
     description: description,
     proImage: proImage,
     amount: amount,
-    email: email
+    email: emailPassed
   });
+
+  console.log(post);
 
   await post.save();
 
