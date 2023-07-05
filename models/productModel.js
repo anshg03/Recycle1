@@ -36,10 +36,6 @@ const productSchema = new Schema({
   amount: {
     type: Number,
     required: true,
-  },
-  isVerified: {
-    type: Boolean,
-    required: true
   }
 });
 

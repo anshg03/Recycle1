@@ -9,11 +9,11 @@ const twilio = require("twilio");
 
 
 const { newPost } = require("../controllers/productController");
-const { sendOTP } = require("../controllers/otpController");
+const { sendOTP, matchOTP } = require("../controllers/otpController");
 const exp = require("constants");
 
 // Create a new product
-router.route("/sell").post(
+router.route("/sell/verified").post(
     [
         body("name").exists().withMessage("enter the name of the product"),
         body("email").isEmail().withMessage("enter a valid email"),
@@ -29,6 +29,11 @@ router.route("/sell/verifydetails").post([
     body("otp").exists(),
     body("phoneNo").exists()
 ], sendOTP);
+
+router.route("/sell/verifydetails/match").post([
+    body("otp").exists(),
+    body("enterOtp").exists()
+], matchOTP);
 
 
 module.exports = router;

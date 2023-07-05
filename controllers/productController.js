@@ -8,18 +8,18 @@ const Post = require("../models/productModel");
 const { protect } = require("./authController");
 
 exports.newPost = catchAsync(async (req, res, next) => {
-  const token = req.headers.authorization.substring(7);
-  const tokenData = jwt.verify(token, process.env.JWT_SECRET);
-  const user = await User.findOne({
-    email: tokenData.email,
-    googleId: tokenData.googleId,
-  });
+  // const token = req.headers.authorization.substring(7);
+  // const tokenData = jwt.verify(token, process.env.JWT_SECRET);
+  // const user = await User.findOne({
+  //   email: tokenData.email,
+  //   googleId: tokenData.googleId,
+  // });
 
-  if (!user) {
-    return next(
-      new AppError("You are not allowed to perform this action", 401)
-    );
-  }
+  // if (!user) {
+  //   return next(
+  //     new AppError("You are not allowed to perform this action", 401)
+  //   );
+  // }
 
   const { name, phoneNo, description, proImage, amount, emailPassed } = req.body;
 

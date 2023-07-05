@@ -22,7 +22,7 @@ const limiter = rateLimit({
 app.use("/api", limiter);
 
 app.use("/api", require("./Routes/userRoute"));
-app.use("/api/product", authExtractor, postRouter);
+app.use("/api/product", postRouter);
 
 //const port = process.env.PORT || 3000;
 // app.listen(port, () => {
